@@ -7,32 +7,15 @@ import domain.Rules;
 public class RockPaperScissors implements Rules {
     @Override
     public Result decide(Move mine, Move theirs) {
-        switch (mine) {
-            case ROCK:
-                switch (theirs) {
-                    case SCISSORS:
-                        return Result.WIN;
-                    case PAPER:
-                        return Result.LOSE;
-                }
-
-            case PAPER:
-                switch (theirs) {
-                    case ROCK:
-                        return Result.WIN;
-                    case SCISSORS:
-                        return Result.LOSE;
-                }
-
-            case SCISSORS:
-                switch (theirs) {
-                    case PAPER:
-                        return Result.WIN;
-                    case ROCK:
-                        return Result.LOSE;
-                }
+        //Met dit if statement heb je 5 cases ipv 9 cases
+        if ((mine == Move.PAPER && theirs == Move.SCISSORS) || (mine == Move.SCISSORS && theirs == Move.ROCK) || (mine == Move.ROCK && theirs == Move.PAPER)) {
+            return Result.LOSE;
         }
-
-        return Result.DRAW;
+        else if (mine == theirs) {
+            return Result.DRAW;
+        }
+        else {
+            return Result.WIN;
+        }
     }
 }
